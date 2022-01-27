@@ -62,18 +62,9 @@ jobs:
       - name: split iso
         run: split -b 1G -d ${{ env.CUSTOM_IMAGE_ISO }} ${{ env.CUSTOM_IMAGE_ISO }}-
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        with:
-          tag_name: ${GITHUB_REF}
-          release_name: Releases ${GITHUB_REF##*/}
-          body: misogihagi customised ubuntu
-          draft: false
-          prerelease: false
+        run: |
+            gh release create ${GITHUB_REF##*/} -t "Releases ${GITHUB_REF##*/}"
       - name: Upload Release Asset
-        id: upload-release-asset
         run: |
             gh release upload ${GITHUB_REF} ./${{ env.CUSTOM_IMAGE_ISO }}-*
         env:
