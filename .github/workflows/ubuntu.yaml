@@ -69,7 +69,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Release Asset
         run: |
-            gh release upload ${GITHUB_REF} ./${{ env.CUSTOM_IMAGE_ISO }}-*
+            gh release upload ${GITHUB_REF##*/} ./${{ env.CUSTOM_IMAGE_ISO }}-*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
