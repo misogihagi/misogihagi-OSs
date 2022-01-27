@@ -64,6 +64,9 @@ jobs:
       - name: Create Release
         run: |
             gh release create ${GITHUB_REF##*/} -t "Releases ${GITHUB_REF##*/}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Release Asset
         run: |
             gh release upload ${GITHUB_REF} ./${{ env.CUSTOM_IMAGE_ISO }}-*
