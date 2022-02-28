@@ -7,3 +7,8 @@ available distro
 install 
 - git
 - curl
+- nodejs
+- rust
+- go
+- docker
+- vscode
