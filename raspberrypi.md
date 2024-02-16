@@ -8,6 +8,7 @@ install
 todo
 * disable password login
 * add ssh key
+* change hostname
 * register usb
 * honey pot https://github.com/skeeto/endlessh
 * stable ssh https://github.com/oowl/quicssh-rs
