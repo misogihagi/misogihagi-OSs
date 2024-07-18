@@ -1,7 +1,10 @@
 FROM ubuntu
 RUN apt update && \
-  apt install openssh-server -y && \
+  apt install openssh-server sudo -y && \
   ssh-keygen -A && \
   mkdir -p /run/sshd && \
   /usr/sbin/sshd && \
-  useradd user
+  useradd user && \
+  usermod --append -G sudo user && \
+  echo 'user ALL=(ALL:ALL) ALL' >> /etc/sudoers && \
+
