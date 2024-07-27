@@ -5,6 +5,12 @@ RUN apt update && \
   mkdir -p /run/sshd && \
   /usr/sbin/sshd && \
   useradd user && \
+  echo 'user:user' | chpasswd && \
   usermod --append -G sudo user && \
-  echo 'user ALL=(ALL:ALL) ALL' >> /etc/sudoers && \
-
+  echo 'user ALL=(ALL:ALL) ALL' >> /etc/sudoers
+RUN echo 
+Host *
+  ControlMaster auto
+  ControlPath ~/.ssh/mux-%r@%h:%p
+  ControlPersist 4h
+>> ~/.ssh/config
