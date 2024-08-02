@@ -5,6 +5,7 @@ RUN apt update && \
   mkdir -p /run/sshd && \
   /usr/sbin/sshd && \
   useradd user && \
+  chsh user /bin/bash && \
   echo 'user:user' | chpasswd && \
   usermod --append -G sudo user && \
   echo 'user ALL=(ALL:ALL) ALL' >> /etc/sudoers
