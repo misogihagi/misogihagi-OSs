@@ -12,3 +12,4 @@ install
 - go
 - docker
 - vscode
+- forgejo
