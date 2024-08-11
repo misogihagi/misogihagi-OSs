@@ -14,3 +14,5 @@ install
 - vscode
 - forgejo
 - vaultwarden
+- ghidra
+- java
