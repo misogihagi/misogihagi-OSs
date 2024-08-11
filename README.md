@@ -13,3 +13,4 @@ install
 - docker
 - vscode
 - forgejo
+- vaultwarden
