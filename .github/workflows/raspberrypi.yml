@@ -19,6 +19,7 @@ jobs:
             gpg pigz xxd arch-test
           git clone https://github.com/RPI-Distro/pi-gen.git
           cd pi-gen
+          echo IMG_NAME=misogihagi-raspberrypi >> config
           echo ARCHIVE_FILENAME=misogihagi-raspberrypi >> config
           echo LOCALE_DEFAULT=en_US.UTF-8 >> config
           echo TARGET_HOSTNAME=raspberrypi4 >> config
