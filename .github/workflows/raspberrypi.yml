@@ -1,0 +1,26 @@
+on:
+  push:
+    tags:
+      - 'v*'
+
+name: Create Release
+env:
+  CUSTOM_IMAGE_NAME: misogihagi_raspberrypi
+  CUSTOM_IMAGE_ISO: ubuntu-misogihagi-20.04.3-desktop-amd64.iso
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: pigen
+        run: |
+          git clone https://github.com/RPI-Distro/pi-gen.git
+          cd pi-gen
+          echo IMG_NAME=misogihagi_raspberrypi >> config
+          echo LOCALE_DEFAULT=en_US.UTF-8 >> config
+          echo TARGET_HOSTNAME raspberrypi >> config
+          echo KEYBOARD_KEYMAP=us >> config
+          echo TIMEZONE_DEFAULT=America/Los_Angeles >> config
+          echo ENABLE_SSH=1 >> config
+          echo PUBKEY_SSH_FIRST_USER= >> config
+          ./build-docker.sh -c config
