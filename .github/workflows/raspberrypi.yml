@@ -1,8 +1,7 @@
 on:
-  push:
-    tags:
-      - 'v*'
-
+  release:
+    types: [published]
+    
 name: Create RaspberryPi Release
 env:
   CUSTOM_IMAGE_NAME: misogihagi_raspberrypi
