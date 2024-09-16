@@ -23,4 +23,7 @@ jobs:
           echo TIMEZONE_DEFAULT=America/Los_Angeles >> config
           echo ENABLE_SSH=1 >> config
           echo PUBKEY_SSH_FIRST_USER= >> config
+          sudo rm -rf stage3 && mkdir stage3 && touch stage3/SKIP
+          sudo rm -rf stage4 && mkdir stage4 && touch stage4/SKIP
+          sudo rm -rf stage5 && mkdir stage5 && touch stage5/SKIP
           ./build-docker.sh -c config
