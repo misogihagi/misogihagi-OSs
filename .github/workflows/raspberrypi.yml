@@ -31,6 +31,13 @@ jobs:
           sudo rm -rf stage5 && mkdir stage5 && touch stage5/SKIP
           ./build-docker.sh -c config
           ls deploy
+          ls deploy/misogihagi-raspberrypi-lite.zip
+
+      - name: file
+        run: |
+          ls
+          ls deploy
+          ls deploy/misogihagi-raspberrypi-lite.zip
 
       - name: Upload Release Asset
         id: upload-release-asset 
@@ -39,6 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path:  ./deploy/misogihagi-raspberrypi-lite.zip
+          asset_path:  deploy/misogihagi-raspberrypi-lite.zip
           asset_name: misogihagi-raspberrypi.zip
           asset_content_type: application/zip
