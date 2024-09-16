@@ -18,7 +18,7 @@ jobs:
           cd pi-gen
           echo IMG_NAME=misogihagi_raspberrypi >> config
           echo LOCALE_DEFAULT=en_US.UTF-8 >> config
-          echo TARGET_HOSTNAME raspberrypi >> config
+          echo TARGET_HOSTNAME=raspberrypi4 >> config
           echo KEYBOARD_KEYMAP=us >> config
           echo TIMEZONE_DEFAULT=America/Los_Angeles >> config
           echo ENABLE_SSH=1 >> config
