@@ -3,15 +3,29 @@ on:
     types: [published]
     
 name: Create RaspberryPi Release
-env:
-  CUSTOM_IMAGE_NAME: misogihagi_raspberrypi
-  CUSTOM_IMAGE_ISO: ubuntu-misogihagi-20.04.3-desktop-amd64.iso
 jobs:
   build:
     name: Create Artifact
     runs-on: ubuntu-latest
     steps:
-      - name: pigen
+      - name: Create stage
+        run: |
+          mkdir -p stage-custom/tweek
+          cat > stage-custom/tweek/00-run-chroot.sh <<-EOF
+          #!/bin/bash
+          apt-get install -y curl
+          curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+          EOF
+          chmod +x stage-custom/tweek/00-run-chroot.sh
+          cat > stage-custom/prerun.sh <<-EOF
+          #!/bin/bash -e
+          if [ ! -d "\${ROOTFS_DIR}" ]; then
+            copy_previous
+          fi
+          EOF
+          chmod +x stage-custom/prerun.sh
+
+      - name: Run pigen
         run: |
           sudo apt-get install coreutils quilt parted qemu-user-static debootstrap zerofree zip \
             dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc \
@@ -26,18 +40,11 @@ jobs:
           echo TIMEZONE_DEFAULT=America/Los_Angeles >> config
           echo ENABLE_SSH=1 >> config
           echo PUBKEY_SSH_FIRST_USER= >> config
-          echo curl >> stage3/00-packages
-          sudo rm -rf stage4 && mkdir stage4 && touch stage4/SKIP
-          sudo rm -rf stage5 && mkdir stage5 && touch stage5/SKIP
+          mv ../stage-custom .
+          rm -rf stage3 && mkdir stage3 && touch stage3/SKIP
+          rm -rf stage4 && mkdir stage4 && touch stage4/SKIP
+          rm -rf stage5 && mkdir stage5 && touch stage5/SKIP
           ./build-docker.sh -c config
-          ls deploy
-          ls deploy/misogihagi-raspberrypi-lite.zip
-
-      - name: file
-        run: |
-          ls
-          ls pi-gen
-          ls pi-gen/deploy/misogihagi-raspberrypi-lite.zip
 
       - name: Upload Release Asset
         id: upload-release-asset 
