@@ -42,7 +42,7 @@ jobs:
           echo TIMEZONE_DEFAULT=America/Los_Angeles >> config
           echo ENABLE_SSH=1 >> config
           echo PUBKEY_ONLY_SSH=1 >> config
-          echo PUBKEY_SSH_FIRST_USER='${{ secrets.PUBKEY }}' >> config
+          echo PUBKEY_SSH_FIRST_USER="\"${{ secrets.PUBKEY }}\"" >> config
           echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> config
           echo WPA_PASSWORD=${{ secrets.WPA_PASSWORD }} >> config
           echo PUBKEY_SSH_FIRST_USER=${{ secrets.PUBKEY }} >> config
