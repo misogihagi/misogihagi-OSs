@@ -46,8 +46,8 @@ jobs:
           echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> config
           echo WPA_PASSWORD=${{ secrets.WPA_PASSWORD }} >> config
           cat config
-          mv ../stage-custom .
-          rm -rf stage3 && mkdir stage3 && touch stage3/SKIP
+          rm -rf stage3
+          mv ../stage-custom ./stage3
           rm -rf stage4 && mkdir stage4 && touch stage4/SKIP
           rm -rf stage5 && mkdir stage5 && touch stage5/SKIP
           ./build-docker.sh -c config
