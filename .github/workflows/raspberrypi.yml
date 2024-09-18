@@ -26,9 +26,7 @@ jobs:
           fi
           EOF
           chmod +x stage-custom/prerun.sh
-          cat stage-custom/tweak/00-run-chroot.sh
-          cat stage-custom/prerun.sh
-
+          
       - name: Run pigen
         run: |
           sudo apt-get install coreutils quilt parted qemu-user-static debootstrap zerofree zip \
