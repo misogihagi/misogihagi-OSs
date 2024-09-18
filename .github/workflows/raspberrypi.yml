@@ -15,8 +15,11 @@ jobs:
           mkdir -p stage-custom/tweak
           cat > stage-custom/tweak/00-run-chroot.sh <<-EOF
           #!/bin/bash
-          apt-get install -y curl
+          apt-get install -y curl docker.io docker-compose
           curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+          curl -L https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64 -o code.deb
+          apt-get install ./code.deb
+          rm code.deb
           EOF
           chmod +x stage-custom/tweak/00-run-chroot.sh
           cat > stage-custom/prerun.sh <<-EOF
