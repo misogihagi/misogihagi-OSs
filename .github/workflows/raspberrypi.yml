@@ -45,7 +45,6 @@ jobs:
           echo PUBKEY_SSH_FIRST_USER="\"${{ secrets.PUBKEY }}\"" >> config
           echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> config
           echo WPA_PASSWORD=${{ secrets.WPA_PASSWORD }} >> config
-          echo PUBKEY_SSH_FIRST_USER=${{ secrets.PUBKEY }} >> config
           cat config
           mv ../stage-custom .
           rm -rf stage3 && mkdir stage3 && touch stage3/SKIP
