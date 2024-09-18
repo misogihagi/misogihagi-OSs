@@ -7,6 +7,8 @@ jobs:
   build:
     name: Create Artifact
     runs-on: ubuntu-latest
+    environment: 
+      name: env
     steps:
       - name: Create stage
         run: |
