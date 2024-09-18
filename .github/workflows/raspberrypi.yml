@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Create stage
         run: |
-          mkdir -p stage-custom/tweek
+          mkdir -p stage-custom/tweak
           cat > stage-custom/tweak/00-run-chroot.sh <<-EOF
           #!/bin/bash
           apt-get install -y curl
