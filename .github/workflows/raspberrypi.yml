@@ -17,7 +17,7 @@ jobs:
           #!/bin/bash
           apt-get install -y curl docker.io docker-compose
           curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
-          curl -L https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64 -o code.deb
+          curl -L 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64' -o code.deb
           apt-get install ./code.deb
           rm code.deb
           EOF
