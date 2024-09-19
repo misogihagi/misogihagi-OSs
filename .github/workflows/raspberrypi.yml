@@ -15,15 +15,7 @@ jobs:
           mkdir -p stage-custom/tweak
           cat > stage-custom/tweak/00-run-chroot.sh <<-EOF
           #!/bin/bash
-          apt-get autoclean
-          apt-get clean all
-          apt-get update
-          apt-get clean 
-          rm -rf /var/lib/apt/lists/*
-          curl -L 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64' -o code.deb
-          apt-get install -y ./code.deb
-          rm code.deb
-          
+          apt-get install -y curl docker.io docker-compose code          
           EOF
           chmod +x stage-custom/tweak/00-run-chroot.sh
           cat > stage-custom/prerun.sh <<-EOF
