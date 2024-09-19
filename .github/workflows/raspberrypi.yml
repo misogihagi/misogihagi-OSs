@@ -15,6 +15,8 @@ jobs:
           mkdir -p stage-custom/tweak
           cat > stage-custom/tweak/00-run-chroot.sh <<-EOF
           #!/bin/bash
+          apt-get autoclean
+          apt-get clean all
           apt-get update
           apt-get install -y curl docker.io docker-compose
           apt-get clean 
