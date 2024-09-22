@@ -16,3 +16,6 @@ install
 - vaultwarden
 - ghidra
 - java
+
+## How did keygen
+ssh-keygen -t ecdsa -b 512
