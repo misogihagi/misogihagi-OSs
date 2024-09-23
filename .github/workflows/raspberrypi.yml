@@ -17,7 +17,7 @@ jobs:
           #!/bin/bash
           apt-get install -y curl git docker.io docker-compose code cmus
           curl -fsSL https://deb.nodesource.com/setup_20.x | bash - 
-          apt-get install -y nodejs npm
+          apt-get install -y nodejs
           EOF
           chmod +x stage-custom/tweak/00-run-chroot.sh
           cat > stage-custom/tweak/00-run.sh <<-EOF
