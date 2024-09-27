@@ -18,7 +18,6 @@ jobs:
           apt-get install -y curl git docker.io docker-compose code cmus
           curl -fsSL https://deb.nodesource.com/setup_20.x | bash - 
           apt-get install -y nodejs
-          node -v
           EOF
           chmod +x stage-custom/tweak/00-run-chroot.sh
           cat > stage-custom/tweak/00-run.sh <<-EOF
@@ -64,7 +63,7 @@ jobs:
           mv ../stage-custom ./stage3
           rm -rf stage4 && mkdir stage4 && touch stage4/SKIP
           rm -rf stage5 && mkdir stage5 && touch stage5/SKIP
-          ./build-docker.sh -c config
+          ./build.sh -c config
 
       - name: Upload Release Asset
         id: upload-release-asset 
