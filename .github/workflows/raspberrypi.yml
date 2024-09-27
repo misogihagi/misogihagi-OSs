@@ -32,6 +32,7 @@ jobs:
           touch .ssh/misohagi-work.pub
           chmod 600 .ssh/misohagi-work
           git config --global commit.gpgsign true
+          pwd
           git
           node -v
           EOF
