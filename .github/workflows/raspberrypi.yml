@@ -13,22 +13,23 @@ jobs:
       - name: Create stage
         run: |
           mkdir -p stage-custom/tweak
-          cat > stage-custom/tweak/00-run.sh <<-EOF
+          cat > stage-custom/tweak/00-run.sh <<'EOF'
           #!/bin/bash
           on_chroot << EOS
           apt-get install -y curl git docker.io docker-compose code cmus
           curl -fsSL https://deb.nodesource.com/setup_20.x | bash - 
           apt-get install -y nodejs
           EOS
-          touch "${ROOTFS_DIR}"/home/"${FIRST_USER_NAME}"/.ssh/misogihagi
-          touch "${ROOTFS_DIR}"/home/"${FIRST_USER_NAME}"/.ssh/misogihagi.pub
-          chmod 600 "${ROOTFS_DIR}"/home/"${FIRST_USER_NAME}"/.ssh/misogihagi
-          touch "${ROOTFS_DIR}"/home/"${FIRST_USER_NAME}"/.ssh/misohagi-work
-          touch "${ROOTFS_DIR}"/home/"${FIRST_USER_NAME}"/.ssh/misohagi-work.pub
-          chmod 600 "${ROOTFS_DIR}"/home/"${FIRST_USER_NAME}"/.ssh/misohagi-work
+          touch "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misogihagi"
+          touch "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misogihagi.pub"
+          chmod 600 "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misogihagi"
+          touch "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misohagi-work"
+          touch "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misohagi-work.pub"
+          chmod 600 "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misohagi-work"
           git config --global commit.gpgsign true
           EOF
           chmod +x stage-custom/tweak/00-run.sh
+          cat stage-custom/tweak/00-run.sh
           cat > stage-custom/prerun.sh <<-EOF
           #!/bin/bash -e
           if [ ! -d "\${ROOTFS_DIR}" ]; then
