@@ -60,7 +60,7 @@ jobs:
           mv ../stage-custom ./stage3
           rm -rf stage4 && mkdir stage4 && touch stage4/SKIP
           rm -rf stage5 && mkdir stage5 && touch stage5/SKIP
-          ./build.sh -c config
+          ./build-docker.sh -c config
 
       - name: Upload Release Asset
         id: upload-release-asset 
