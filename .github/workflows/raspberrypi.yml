@@ -27,6 +27,11 @@ jobs:
           touch "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misohagi-work.pub"
           chmod 600 "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misohagi-work"
           git config --global commit.gpgsign true
+          mkdir "${ROOTFS_DIR}/work"
+          mkdir "${ROOTFS_DIR}/work/misogihagi"
+          mkdir "${ROOTFS_DIR}/work/misohagi-work"
+          git config --global includeIf."gitdir:/work/".path "~/.gitconfig-misogihagi"
+          git config --global includeIf."gitdir:/work/".path "~/.gitconfig-misohagi-work"
           EOF
           chmod +x stage-custom/tweak/00-run.sh
           cat stage-custom/tweak/00-run.sh
