@@ -29,6 +29,7 @@ jobs:
           touch "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misohagi-work"
           touch "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misohagi-work.pub"
           chmod 600 "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/misohagi-work"
+          echo ${{ secrets.PUBKEY }} >> "${ROOTFS_DIR}/home/${FIRST_USER_NAME}/.ssh/authorized_keys"
           git config --global commit.gpgsign true
           mkdir "${ROOTFS_DIR}/work"
           mkdir "${ROOTFS_DIR}/work/misogihagi"
