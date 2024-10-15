@@ -25,3 +25,11 @@ autofs
 RAID
 LUKS
 
+sudo mount restricted
+
+/etc/docker/daemon.json
+```
+{
+ "data-root": "/restricted/docker"
+}
+```
