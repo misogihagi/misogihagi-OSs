@@ -16,6 +16,9 @@ install
 - vaultwarden
 - ghidra
 - java
+- git-completion
+- git-prompt
+- starship
 
 ## How did keygen
 ssh-keygen -t ecdsa -b 512
