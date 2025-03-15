@@ -76,5 +76,5 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path:  ${{ steps.build.outputs.image-path }}
-          asset_name: misogihagi-raspberryp-i.zip
+          asset_name: misogihagi-raspberry-pi.zip
           asset_content_type: application/zip
