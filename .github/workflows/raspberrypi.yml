@@ -21,6 +21,31 @@ jobs:
           tar -C /usr/local -xzf go${GO_VERSION}.linux-arm64.tar.gz
           echo 'export PATH=/usr/local/go/bin:$PATH' >> /etc/profile
           rm go${GO_VERSION}.linux-arm64.tar.gz
+          wget https://github.com/oowl/quicssh-rs/releases/download/v0.1.5/quicssh-Linux-aarch64-musl.tar.gz
+          tar -C /usr/local/bin -xzf quicssh-Linux-aarch64-musl.tar.gz
+          rm quicssh-Linux-aarch64-musl.tar.gz
+
+          cat > /etc/systemd/system/quicssh.service << eot
+          [Unit]
+          Description=QUIC SSH Server
+          After=network.target
+          
+          [Service]
+          ExecStart=/usr/local/bin/quicssh-rs server
+          Restart=always
+          Environment="LOG_FILE=/var/log/quicssh.log"
+          Environment="LOG_LEVEL=error"
+          
+          # Security Hardening
+          NoNewPrivileges=true
+          ProtectSystem=full
+          ProtectHome=true
+          PrivateTmp=true
+          
+          [Install]
+          WantedBy=multi-user.target
+          eot
+          systemctl enable quicssh.service
           EOF
           } &&
           chmod +x custom-stage/package/00-run-chroot.sh &&
