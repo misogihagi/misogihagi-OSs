@@ -31,7 +31,7 @@ jobs:
           After=network.target
           
           [Service]
-          ExecStart=/usr/local/bin/quicssh-rs server
+          ExecStart=/usr/local/bin/quicssh-rs server --listen 0.0.0.0:22333
           Restart=always
           Environment="LOG_FILE=/var/log/quicssh.log"
           Environment="LOG_LEVEL=error"
