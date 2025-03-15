@@ -10,7 +10,7 @@ jobs:
       - run: |
           mkdir -p custom-stage/package &&
           {
-          cat > custom-stage/package/00-run-chroot.sh <<-EOF
+          cat > custom-stage/package/00-run-chroot.sh <<-'EOF'
           #!/bin/bash
           apt-get install -y curl git docker.io docker-compose cmus code
           su - ${FIRST_USER_NAME} -c 'curl https://get.volta.sh | bash'
