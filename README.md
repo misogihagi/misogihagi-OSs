@@ -19,6 +19,7 @@ install
 - git-completion
 - git-prompt
 - starship
+- ssh on quic
 
 ## How did keygen
 ssh-keygen -t ecdsa -b 512
