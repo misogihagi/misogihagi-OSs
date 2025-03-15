@@ -4,7 +4,7 @@ on:
     
 name: Create RaspberryPi Release
 jobs:
-  pi-gen-nodejs:
+  pi-gen:
     runs-on: ubuntu-latest
     steps:
       - run: |
@@ -35,12 +35,13 @@ jobs:
           chmod +x custom-stage/prerun.sh
 
       - uses: usimd/pi-gen-action@v1
+        id: build
         with:
-          image-name: misohagi-pi
+          image-name: misogihagi-pi
           stage-list: stage0 stage1 stage2 ./custom-stage
 
       - run: |
-          ls
+          ls  ${{ steps.build.outputs.image-path }}
 
       - name: Upload Release Asset
         id: upload-release-asset 
@@ -49,6 +50,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path:  ./pi-gen/deploy/misogihagi-raspberrypi-lite.zip
-          asset_name: misogihagi-raspberrypi.zip
+          asset_path:  ${{ steps.build.outputs.image-path }}
+          asset_name: misogihagi-raspberryp-i.zip
           asset_content_type: application/zip
