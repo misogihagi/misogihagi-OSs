@@ -21,10 +21,13 @@ jobs:
           tar -C /usr/local -xzf go${GO_VERSION}.linux-arm64.tar.gz
           echo 'export PATH=/usr/local/go/bin:$PATH' >> /etc/profile
           rm go${GO_VERSION}.linux-arm64.tar.gz
+          # cloudflare
+          wget https://github.com/cloudflare/cloudflared/releases/download/2025.2.1/cloudflared-linux-arm64
+          mv cloudflared-linux-arm64 /usr/local/bin
+          # quich-ssh
           wget https://github.com/oowl/quicssh-rs/releases/download/v0.1.5/quicssh-Linux-aarch64-musl.tar.gz
           tar -C /usr/local/bin -xzf quicssh-Linux-aarch64-musl.tar.gz
           rm quicssh-Linux-aarch64-musl.tar.gz
-
           cat > /etc/systemd/system/quicssh.service << eot
           [Unit]
           Description=QUIC SSH Server
