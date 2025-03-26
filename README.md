@@ -20,6 +20,7 @@ install
 - git-prompt
 - starship
 - ssh on quic
+- cloudflare
 
 ## How did keygen
 ssh-keygen -t ecdsa -b 512
