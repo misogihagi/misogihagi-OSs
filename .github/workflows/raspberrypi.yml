@@ -13,6 +13,10 @@ jobs:
           cat > custom-stage/package/00-run-chroot.sh <<-'EOF'
           #!/bin/bash
           apt-get install -y curl git docker.io docker-compose cmus code qemu-system
+          USERNAME=desktop
+          useradd $USERNAME
+          sudo mkdir /home/$USERNAME
+          sudo chown $USERNAME:$USERNAME /home/$USERNAME
           su - ${FIRST_USER_NAME} -c 'curl https://get.volta.sh | bash'
           su - ${FIRST_USER_NAME} -c 'curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y'
           su - ${FIRST_USER_NAME} -c 'curl -fsSL https://astro.build/uv/install.sh | sh'
