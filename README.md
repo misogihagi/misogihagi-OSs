@@ -7,7 +7,8 @@ available distro
 install 
 - git
 - curl
-- nodejs
+- ~~nodejs~~volta
+- uv
 - rust
 - go
 - docker
