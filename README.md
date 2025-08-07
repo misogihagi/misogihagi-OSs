@@ -23,6 +23,9 @@ install
 - ssh on quic
 - cloudflare
 
+font:
+https://github.com/yuru7/udev-gothic
+
 ## How did keygen
 ssh-keygen -t ecdsa -b 512
 
