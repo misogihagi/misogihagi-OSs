@@ -12,3 +12,40 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo apt-get update
 echo -e "\n" | sudo apt install -y git curl nodejs docker-ce docker-ce-cli containerd.io ./vscode.deb
 sudo apt clean && sudo rm -rf /tmp/* ~/.bash_history && sudo rm /etc/resolv.conf && sudo rm /var/lib/dbus/machine-id && sudo rm /sbin/initctl && sudo dpkg-divert --rename --remove /sbin/initctl
+sudo mkdir -p /etc/skel/.vscode/snippets/
+sudo tee /etc/skel/.vscode/snippets/html.code-snippets <<EOF
+  "Blank HTML5 Template": {
+    "prefix": "blankhtml",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"ja\">",
+      "<head>",
+      "  <meta charset=\"UTF-8\">",
+      "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">",
+      "  <title>${1:Document}</title>",
+      "  <meta name=\"description\" content=\"${2:説明文をここに入力}\">",
+      "  ",
+      "  ",
+      "  <meta property=\"og:type\" content=\"website\">",
+      "  <meta property=\"og:title\" content=\"${1:Document}\">",
+      "  <meta property=\"og:description\" content=\"${2:説明文をここに入力}\">",
+      "  <meta property=\"og:url\" content=\"${3:https://example.com}\">",
+      "  <meta property=\"og:image\" content=\"${4:ogp-image.jpg}\">",
+      "  ",
+      "  ",
+      "  <link rel=\"stylesheet\" href=\"${5:style.css}\">",
+      "  <link rel=\"icon\" href=\"favicon.ico\">",
+      "</head>",
+      "<body>",
+      "  $0",
+      "  ",
+      "  ",
+      "  <script src=\"${6:main.js}\"></script>",
+      "</body>",
+      "</html>"
+    ],
+    "description": "モダンなHTML5のボイラープレート（OGP対応）"
+  }
+}
+EOF
